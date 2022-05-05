@@ -52,7 +52,9 @@ print("\nAufgabe 3.7.1:\n")
 
 print("a) 20! =", math.factorial(20),
       "\nb) 10!^2 =", math.factorial(10)**2,
-      "\nc) 10*10!^2 =", 10*math.factorial(10)**2)
+      "\nc) 10*10!^2 =", 10*math.factorial(10)**2,
+      "\nc) Laut Tutorenkorrektur: N3=11·10!·10!=1.45×10^14= ",11*math.factorial(10)*math.factorial(10))
+
 
 print("\nAufgabe 3.7.2:\n")
 
