@@ -51,15 +51,15 @@ print("b) P(N|V) = P(V∩N)/P(V) = 0.45/0.6 = ", 0.45 / 0.6)
 print("\nAufgabe 3.7.1:\n")
 
 print("a) 20! =", math.factorial(20),
-      "\nb) 10!^2 =", math.factorial(10)**2,
-      "\nc) 10*10!^2 =", 10*math.factorial(10)**2)
+      "\nb) 10!*2^10 =", math.factorial(10)*2**10,
+      "\nc) 11*10*10!^2 =", 11*10*math.factorial(10)**2)
 
 print("\nAufgabe 3.7.2:\n")
 
 im2 = Image.open("3.7.2.png")
 im2.show()
 
-print("\nAufgabe 3.8.1:\n")
+print("\nAufgabe 3.8:\n")
 
-im3 = Image.open("3.8.1.png")
+im3 = Image.open("3.8.png")
 im3.show()
