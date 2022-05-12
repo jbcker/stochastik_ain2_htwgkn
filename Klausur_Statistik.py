@@ -61,13 +61,13 @@ def quantile(event=None):
                     title='Du Käpsale',
                     message='Deine Eingabe ist keine Zahl')
 
-        quantiletxt = ''
+        qnt_txt = ''
         # print("25% Quartil = ", np.quantile(data, 0.25, method="averaged_inverted_cdf"))
-        quantiletxt = quantiletxt + "25.0% Quartil = " + str(np.quantile(data, 0.25, method="averaged_inverted_cdf"))
+        qnt_txt = qnt_txt + "25.0% Quartil = " + str(np.quantile(data, 0.25, method="averaged_inverted_cdf"))
         # print("50% Quartil = ", np.quantile(data, 0.50, method="averaged_inverted_cdf"))
-        quantiletxt = quantiletxt + "\n50.0% Quartil = " + str(np.quantile(data, 0.50, method="averaged_inverted_cdf"))
+        qnt_txt = qnt_txt + "\n50.0% Quartil = " + str(np.quantile(data, 0.50, method="averaged_inverted_cdf"))
         # print("75% Quartil = ", np.quantile(data, 0.75, method="averaged_inverted_cdf"))
-        quantiletxt = quantiletxt + "\n75.0% Quartil = " + str(np.quantile(data, 0.75, method="averaged_inverted_cdf"))
+        qnt_txt = qnt_txt + "\n75.0% Quartil = " + str(np.quantile(data, 0.75, method="averaged_inverted_cdf"))
 
         if i.get() != '':
             quantilvalue = i.get()
@@ -80,7 +80,7 @@ def quantile(event=None):
             else:
                 print(quantilvalue, "% Quantil = ",
                       np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
-                quantiletxt = quantiletxt + "\n" + str(quantilvalue) + "% Quantil = " + str(
+                qnt_txt = qnt_txt + "\n" + str(quantilvalue) + "% Quantil = " + str(
                     np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
     else:
         print("\nKeine Daten eingegeben!\n")
@@ -99,7 +99,7 @@ def quantile(event=None):
     scroll.config(command=text.yview)
     scroll.pack(side=tk.RIGHT, fill=tk.Y)
 
-    text.insert(tk.END, quantiletxt)
+    text.insert(tk.END, qnt_txt)
     text['state'] = 'disabled'
     # text.grid(column=0, row=0)
 
