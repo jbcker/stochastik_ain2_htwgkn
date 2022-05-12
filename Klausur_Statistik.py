@@ -1,6 +1,9 @@
+import statistics
 from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import showinfo, showerror
+import tkinter as tk
+import sys
 
 import numpy as np
 from numpy import double
@@ -27,7 +30,7 @@ def ausgabe(dataAsString):
     ergebnis = ergebnis + "\nDurchschnitt = " + str(np.average(data))
     # alternative zu np.mean()
 
-    print("Median = ", np.quantile(data, 0.5))
+    ergebnis = ergebnis + "\nMedian = " + str(np.quantile(data, 0.5))
     # percentile(array, prozentzahl)berechnet Quantil bei Prozentzahl. Median = 0.5
 
     ergebnis = ergebnis + "\nModalwert(e): " + str(statistics.multimode(data))
@@ -157,8 +160,8 @@ i.grid(column=0, row=3)
 ttk.Button(frm, text="Quantile berechnen", command=quantile).grid(column=1, row=3)
 ttk.Label(frm, text="").grid(column=0, row=4)
 ttk.Button(frm, text="Drück mi", command=lambda: showinfo(
-        title='HaHa',
-        message='Hast du während deiner Klausur nichts besseres zu tun?')).grid(column=0, row=5)
+    title='HaHa',
+    message='Hast du während deiner Klausur nichts besseres zu tun?')).grid(column=0, row=5)
 ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=5)
 e.bind('<Return>', callback)
 i.bind('<Return>', quantile)
