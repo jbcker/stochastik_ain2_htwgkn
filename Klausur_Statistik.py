@@ -54,7 +54,7 @@ def quantile():
                 data[x] = float(dataAsString[x])
             except ValueError:
                 showerror(
-                    title='Du Seggl',
+                    title='Du Käpsale',
                     message='Deine Eingabe ist keine Zahl')
 
         print("25% Quartil = ", np.quantile(data, 0.25, method="averaged_inverted_cdf"))
