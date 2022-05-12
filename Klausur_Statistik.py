@@ -39,7 +39,7 @@ def ausgabe(dataAsString):
     ergebnis = ergebnis + "\nVarianz = " + str(np.var(data))
     # variance = (Summe der Quadrate aus allen Zahlen und Mitteln)/n
 
-    ergebnis = ergebnis + "\nempirische Standardabweichung =" + str(np.std(data))
+    ergebnis = ergebnis + "\nempirische Standardabweichung = " + str(np.std(data))
     # StandardDeviation = Wurzel(variance) -> wie Weit weichen Daten von Mittelwert ab?
 
     ergebnis = ergebnis + "\nInterquartialabstand: " + str(np.percentile(data, 75) - np.percentile(data, 25))
@@ -88,8 +88,8 @@ def quantile(event=None):
     qnt = tk.Tk()
     qnt.geometry("500x100")
     qnt.wm_title("Quantile und so")
-    #frm_qnt = ttk.Frame(qnt, padding=25)
-    #frm_qnt.grid()
+    # frm_qnt = ttk.Frame(qnt, padding=25)
+    # frm_qnt.grid()
 
     text = tk.Text(qnt, height=5, width=50)
     scroll = ttk.Scrollbar(qnt)
@@ -101,10 +101,10 @@ def quantile(event=None):
 
     text.insert(tk.END, quantiletxt)
     text['state'] = 'disabled'
-    #text.grid(column=0, row=0)
+    # text.grid(column=0, row=0)
 
     b1 = Button(qnt, text="Exit", command=qnt.destroy)
-    #b1.grid(column=1, row=0)
+    # b1.grid(column=1, row=0)
     b1.pack()
 
 
