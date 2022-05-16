@@ -23,7 +23,7 @@ print("x\t\t", "1\t\t", "2\t\t", "3\t\t")
 print("F(x2)\t", fx2[0], "\t", fx2[1], "\t", fx2[2], "\t")
 
 
-print("4.1.1 b)")
+# print("4.1.1 b)")
 
 # set width of bar
 barWidth = 0.25
@@ -46,7 +46,7 @@ plt.title("4.1.1 b)")
 plt.legend()
 plt.show()
 
-print("4.1.1 c)")
+# print("4.1.1 c)")
 typ1 = [1, 1, 1, 1, 2, 3, 3, 3]
 typ2 = [1, 1, 1, 2, 2, 2, 3, 3]
 
@@ -59,7 +59,7 @@ plt.xticks(np.arange(1, 4))
 plt.title("4.1.1 c)")
 b.show()
 
-print("4.1.2")
+print("\n4.1.2")
 print("b) Varianz x1 = ", np.var(typ1))
 print("b) Varianz x2 = ", np.var(typ2))
 
