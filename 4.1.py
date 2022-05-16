@@ -30,9 +30,9 @@ barWidth = 0.25
 fig = plt.subplots()
 x2 = [x + barWidth for x in x]
 
-plt.bar(x, px1, color ='r', width = barWidth,
-        edgecolor ='grey', label ='P(x=x1)')
-plt.bar(x2, px2, color ='g', width = barWidth,
+plt.bar(x, px1, color='r', width=barWidth,
+        edgecolor='grey', label='P(x=x1)')
+plt.bar(x2, px2, color ='g', width=barWidth,
         edgecolor ='grey', label ='P(x=x2)')
 # Adding Xticks
 plt.ylim(0, 1)
@@ -60,8 +60,18 @@ plt.title("4.1.1 c)")
 b.show()
 
 print("4.1.2")
+erwartungswert = 0
+for i in range(3):
+    erwartungswert = erwartungswert + (x[i] * px1[i])
+print("4.2 a) Erwartungswert = ", erwartungswert)
+
+erwartungswert = 0
+for i in range(3):
+    erwartungswert = erwartungswert + (x[i] * px2[i])
+print("4.2 a) Erwartungswert = ", erwartungswert)
+
 print("b) Varianz x1 = ", np.var(typ1))
 print("b) Varianz x2 = ", np.var(typ2))
 
-print("h) Standardabweichung x1=", np.std(typ1))
-print("h) Standardabweichung x2=", np.std(typ1))
+print("c) Standardabweichung x1=", np.std(typ1))
+print("c) Standardabweichung x2=", np.std(typ1))
