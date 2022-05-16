@@ -30,7 +30,7 @@ b.show()
 
 erwartungswert = 0
 for i in range(5):
-    erwartungswert = erwartungswert + (x[i] + p[i])
+    erwartungswert = erwartungswert + (x[i] * p[i])
 
 print("4.2 c) Erwartungswert = ", erwartungswert)
 print("4.2 d) Varianz = ", np.var(data))
