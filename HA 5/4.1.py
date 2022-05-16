@@ -63,15 +63,15 @@ print("4.1.2")
 erwartungswert = 0
 for i in range(3):
     erwartungswert = erwartungswert + (x[i] * px1[i])
-print("4.2 a) Erwartungswert = ", erwartungswert)
+print("a) Erwartungswert = ", erwartungswert)
 
 erwartungswert = 0
 for i in range(3):
     erwartungswert = erwartungswert + (x[i] * px2[i])
-print("4.2 a) Erwartungswert = ", erwartungswert)
+print("a) Erwartungswert = ", erwartungswert)
 
 print("b) Varianz x1 = ", np.var(typ1))
 print("b) Varianz x2 = ", np.var(typ2))
 
 print("c) Standardabweichung x1=", np.std(typ1))
-print("c) Standardabweichung x2=", np.std(typ1))
+print("c) Standardabweichung x2=", np.std(typ2))
