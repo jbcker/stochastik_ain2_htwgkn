@@ -1,5 +1,3 @@
-from PIL import Image
-
 print("Autoren: Jona Böcker, Lukas Butscher, Wiebke Prinz, Tobias Stöhr")
 
 print("3.6, 3.9, 3.11 als Foto hochgeladen")
