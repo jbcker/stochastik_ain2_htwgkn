@@ -46,7 +46,10 @@ def ausgabe(dataAsString):
 
     ergebnis = ergebnis + "\nSpannweite (Range) = " + str(max(data) - min(data))
 
-    loesung(ergebnis)
+    text['state'] = 'normal'
+    text.delete(1.0, "end")
+    text.insert(tk.END, ergebnis)
+    text['state'] = 'disabled'
 
 
 def quantile(event=None):
@@ -85,27 +88,10 @@ def quantile(event=None):
     else:
         print("\nKeine Daten eingegeben!\n")
 
-    qnt = tk.Tk()
-    qnt.geometry("500x100")
-    qnt.wm_title("Quantile und so")
-    # frm_qnt = ttk.Frame(qnt, padding=25)
-    # frm_qnt.grid()
-
-    text = tk.Text(qnt, height=5, width=50)
-    scroll = ttk.Scrollbar(qnt)
-    text.configure(yscrollcommand=scroll.set)
-    text.pack(side=tk.LEFT)
-
-    scroll.config(command=text.yview)
-    scroll.pack(side=tk.RIGHT, fill=tk.Y)
-
+    text['state'] = 'normal'
+    text.delete(1.0, "end")
     text.insert(tk.END, qnt_txt)
     text['state'] = 'disabled'
-    # text.grid(column=0, row=0)
-
-    b1 = Button(qnt, text="Exit", command=qnt.destroy)
-    # b1.grid(column=1, row=0)
-    b1.pack()
 
 
 def callback(event=None):
@@ -118,32 +104,12 @@ def callback(event=None):
         print("\nKeine Daten eingegeben!\n")
 
 
-def loesung(data):
-    lsg = tk.Tk()
-    lsg.geometry("500x200")
-    lsg.wm_title("Des han i schnell im Kopf gmacht!")
-
-    text = tk.Text(lsg, height=10, width=50)
-    scroll = ttk.Scrollbar(lsg)
-    text.configure(yscrollcommand=scroll.set)
-    text.pack(side=tk.LEFT)
-
-    scroll.config(command=text.yview)
-    scroll.pack(side=tk.RIGHT, fill=tk.Y)
-    n = len(data)
-
-    text.insert(tk.END, data)
-    text['state'] = 'disabled'
-
-    b1 = Button(lsg, text="Exit", command=lsg.destroy)
-    b1.pack()
-
-
 def close(event):
     sys.exit()  # if you want to exit the entire thing
 
 
 root = tk.Tk()
+root.geometry("500x375")
 root.wm_title("Kannsch des nich im Kopf rechna?!")
 frm = ttk.Frame(root, padding=25)
 frm.grid()
@@ -161,8 +127,17 @@ ttk.Button(frm, text="Quantile berechnen", command=quantile).grid(column=1, row=
 ttk.Label(frm, text="").grid(column=0, row=4)
 ttk.Button(frm, text="Drück mi", command=lambda: showinfo(
     title='HaHa',
-    message='Hast du während deiner Klausur nichts besseres zu tun?')).grid(column=0, row=5)
-ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=5)
+    message='Hast du während deiner Klausur nichts besseres zu tun?')).grid(column=0, row=6)
+ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=6)
+
+frm2 = ttk.Frame(root, padding=25)
+frm2.grid()
+text = tk.Text(root, height=10, width=50)
+text.grid(column=0, row=7)
+
+text.insert(tk.END, "Jetzt gib mal Werte ein!!!")
+text['state'] = 'disabled'
+
 e.bind('<Return>', callback)
 i.bind('<Return>', quantile)
 root.bind('<Escape>', close)
