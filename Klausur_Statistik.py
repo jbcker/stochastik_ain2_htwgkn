@@ -8,6 +8,8 @@ import sys
 import numpy as np
 from numpy import double
 
+import time
+
 
 def ausgabe(dataAsString):
     ergebnis = ''
@@ -108,6 +110,13 @@ def close(event):
     sys.exit()  # if you want to exit the entire thing
 
 
+def sleep():
+    time.sleep(5)
+    text['state'] = 'normal'
+    text.insert(tk.END, "\n Jetzt mal ehrlich, was machst du denn so lange?")
+    text['state'] = 'disabled'
+
+
 root = tk.Tk()
 root.geometry("500x375")
 root.wm_title("Kannsch des nich im Kopf rechna?!")
@@ -141,4 +150,7 @@ text['state'] = 'disabled'
 e.bind('<Return>', callback)
 i.bind('<Return>', quantile)
 root.bind('<Escape>', close)
+
+#sleep()
+
 root.mainloop()
