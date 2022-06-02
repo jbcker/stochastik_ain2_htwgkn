@@ -11,6 +11,6 @@ print("P(X=x)\t", round(math.pow(9 / 10, 5), 6), "\t", round(math.pow(9 / 10, 4)
       round(math.pow(1 / 10, 5), 6))
 print("\nc)")
 n, p = 5, 1 / 10
-print("P(X<=2: ", binom.cdf(2, n, p))
+print("P(X<=2): ", binom.cdf(2, n, p))
 print("P(X>=3) = 1-P(X<=2): ", round(1 - binom.cdf(2, n, p), 4))
 print("\nd)\nErwartungswert = ", 0.1 * 5)

@@ -2,7 +2,7 @@ import terminaltables
 from matplotlib import pyplot as plt
 import numpy as np
 
-print("Autoren: Jona Böcker, Lukas Butscher, Wiebke Prinz, Tobias Stöhr")
+# print("Autoren: Jona Böcker, Lukas Butscher, Wiebke Prinz, Tobias Stöhr")
 
 print("\nAufgabe 4.8.1:\n")
 
