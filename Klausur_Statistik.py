@@ -8,8 +8,6 @@ import sys
 import numpy as np
 from numpy import double
 
-import time
-
 
 def ausgabe(dataAsString):
     ergebnis = ''
@@ -145,13 +143,6 @@ def close(event):
     sys.exit()  # if you want to exit the entire thing
 
 
-def sleep():
-    time.sleep(5)
-    text['state'] = 'normal'
-    text.insert(tk.END, "\n Jetzt mal ehrlich, was machst du denn so lange?")
-    text['state'] = 'disabled'
-
-
 root = tk.Tk()
 root.wm_title("Kannsch des nich im Kopf rechna?!")
 frm = ttk.Frame(root, padding=25)
@@ -175,7 +166,5 @@ ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=5)
 e.bind('<Return>', callback)
 i.bind('<Return>', quantile)
 root.bind('<Escape>', close)
-
-#sleep()
 
 root.mainloop()
