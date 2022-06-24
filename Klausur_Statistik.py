@@ -36,10 +36,10 @@ def ausgabe(dataAsString):
     ergebnis = ergebnis + "\nModalwert(e): " + str(statistics.multimode(data))
     # am häufigsten auftretender Wert -> jewl. erster der Arrays
 
-    ergebnis = ergebnis + "\nVarianz = " + str(np.var(data))
+    ergebnis = ergebnis + "\nVarianz = " + str(np.var(data, ddof=1))
     # variance = (Summe der Quadrate aus allen Zahlen und Mitteln)/n
 
-    ergebnis = ergebnis + "\nempirische Standardabweichung = " + str(np.std(data))
+    ergebnis = ergebnis + "\nempirische Standardabweichung = " + str(np.std(data, ddof=1))
     # StandardDeviation = Wurzel(variance) -> wie Weit weichen Daten von Mittelwert ab?
 
     ergebnis = ergebnis + "\nInterquartialabstand: " + str(np.percentile(data, 75) - np.percentile(data, 25))
