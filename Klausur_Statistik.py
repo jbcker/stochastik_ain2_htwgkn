@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import showinfo, showerror
 import tkinter as tk
+import tkinter.font as tkFont
 import sys
 
 import numpy as np
@@ -10,21 +11,28 @@ from numpy import double
 
 
 def ausgabe(dataAsString):
+    if len(dataAsString) <= 1:  # abfangen, wenn nur eine Zahl vorhanden
+        showerror(
+            title='So geht das nicht',
+            message='Ohne genug Daten wird´s selbst für mich schwierig.')
+        return
     ergebnis = ''
     data = [0.0] * (len(dataAsString))
     for x in range(0, len(dataAsString)):
-        try:
+        try:  # abfangen, wenn ein Wert keine Zahl ist
             data[x] = float(dataAsString[x])
         except ValueError:
             showerror(
                 title='Du Seggl',
-                message='Deine Eingabe ist keine Zahl')
+                message='Der ' + str(x + 1) + '. Wert aus deiner Eingabe ist keine Zahl')
+            return
 
     ergebnis = ergebnis + "Als Float-Array: " + str(data)
     n = len(data)
     ergebnis = ergebnis + "\nAnzahl Elemente (n): " + str(n)
 
-    ergebnis = ergebnis + "\nArithmetisches Mittel = " + str(np.mean(data))
+    mittelwert = str(np.mean(data))
+    ergebnis = ergebnis + "\nArithmetisches Mittel = " + mittelwert
     # numpy.mean() berechnet Arithmetisches Mittel(Mittelwert)
 
     ergebnis = ergebnis + "\nDurchschnitt = " + str(np.average(data))
@@ -39,51 +47,58 @@ def ausgabe(dataAsString):
     ergebnis = ergebnis + "\nVarianz = " + str(np.var(data, ddof=1))
     # variance = (Summe der Quadrate aus allen Zahlen und Mitteln)/n
 
-    ergebnis = ergebnis + "\nempirische Standardabweichung = " + str(np.std(data, ddof=1))
+    standardabweichung = np.std(data, ddof=1)
+    ergebnis = ergebnis + "\nempirische Standardabweichung = " + str(standardabweichung)
     # StandardDeviation = Wurzel(variance) -> wie Weit weichen Daten von Mittelwert ab?
 
-    ergebnis = ergebnis + "\nInterquartialabstand: " + str(np.percentile(data, 75) - np.percentile(data, 25))
+    ergebnis = ergebnis + "\nInterquartilsabstand: " + str(np.percentile(data, 75) - np.percentile(data, 25))
 
     ergebnis = ergebnis + "\nSpannweite (Range) = " + str(max(data) - min(data))
+
+    ergebnis = ergebnis + "\nWahrer Erwartungswert = " + mittelwert
+
+    ergebnis = ergebnis + "\nWahre Varianz (Std^2) = " + str(standardabweichung ** 2)
 
     loesung(ergebnis)
 
 
 def quantile(event=None):
-    if e.get() != '':
-        dataAsString = e.get().split()
-        data = [0.0] * (len(dataAsString))
-        for x in range(0, len(dataAsString)):
-            try:
-                data[x] = float(dataAsString[x])
-            except ValueError:
-                showerror(
-                    title='Du Käpsale',
-                    message='Deine Eingabe ist keine Zahl')
+    if e.get() == '':
+        showerror(
+            title='Also ein bisschen könntest du auch noch nachdenken!',
+            message='Ohne genug Daten wird´s selbst für mich schwierig.')
+        return
+    dataAsString = e.get().split()
+    data = [0.0] * (len(dataAsString))
+    for x in range(0, len(dataAsString)):
+        try:
+            data[x] = float(dataAsString[x])
+        except ValueError:
+            showerror(
+                title='Du Käpsale',
+                message='Der ' + str(x + 1) + '. Wert aus deiner Eingabe ist keine Zahl')
+            return
 
-        qnt_txt = ''
-        # print("25% Quartil = ", np.quantile(data, 0.25, method="averaged_inverted_cdf"))
-        qnt_txt = qnt_txt + "25.0% Quartil = " + str(np.quantile(data, 0.25, method="averaged_inverted_cdf"))
-        # print("50% Quartil = ", np.quantile(data, 0.50, method="averaged_inverted_cdf"))
-        qnt_txt = qnt_txt + "\n50.0% Quartil = " + str(np.quantile(data, 0.50, method="averaged_inverted_cdf"))
-        # print("75% Quartil = ", np.quantile(data, 0.75, method="averaged_inverted_cdf"))
-        qnt_txt = qnt_txt + "\n75.0% Quartil = " + str(np.quantile(data, 0.75, method="averaged_inverted_cdf"))
+    qnt_txt = ''
+    # print("25% Quartil = ", np.quantile(data, 0.25, method="averaged_inverted_cdf"))
+    qnt_txt = qnt_txt + "25.0% Quartil = " + str(np.quantile(data, 0.25, method="averaged_inverted_cdf"))
+    # print("50% Quartil = ", np.quantile(data, 0.50, method="averaged_inverted_cdf"))
+    qnt_txt = qnt_txt + "\n50.0% Quartil = " + str(np.quantile(data, 0.50, method="averaged_inverted_cdf"))
+    # print("75% Quartil = ", np.quantile(data, 0.75, method="averaged_inverted_cdf"))
+    qnt_txt = qnt_txt + "\n75.0% Quartil = " + str(np.quantile(data, 0.75, method="averaged_inverted_cdf"))
 
-        if i.get() != '':
-            quantilvalue = i.get()
-            quantilvalue = double(quantilvalue)
-
-            if quantilvalue < 0 or quantilvalue > 100:
-                showerror(
-                    title='Bisch du bled?',
-                    message='Quantile < 0 oder > 100 können nicht berechnet werden!')
-            else:
-                print(quantilvalue, "% Quantil = ",
-                      np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
-                qnt_txt = qnt_txt + "\n" + str(quantilvalue) + "% Quantil = " + str(
-                    np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
-    else:
-        print("\nKeine Daten eingegeben!\n")
+    if i.get() != '':
+        quantilvalue = i.get()
+        quantilvalue = double(quantilvalue)
+        if quantilvalue < 0 or quantilvalue > 100:
+            showerror(
+                title='Bisch du bled?',
+                message='Quantile < 0 oder > 100 können nicht berechnet werden!')
+        else:
+            print(quantilvalue, "% Quantil = ",
+                np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
+            qnt_txt = qnt_txt + "\n" + str(quantilvalue) + "% Quantil = " + str(
+            np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
 
     qnt = tk.Tk()
     qnt.geometry("500x100")
@@ -115,7 +130,9 @@ def callback(event=None):
         print("\nDeine Ausgangsdaten sind: ", data)
         ausgabe(data)
     else:
-        print("\nKeine Daten eingegeben!\n")
+        showerror(
+            title='So geht das nicht',
+            message='Ohne Daten wird´s selbst für mich schwierig.')
 
 
 def loesung(data):
@@ -123,7 +140,7 @@ def loesung(data):
     lsg.geometry("500x200")
     lsg.wm_title("Des han i schnell im Kopf gmacht!")
 
-    text = tk.Text(lsg, height=10, width=50)
+    text = tk.Text(lsg, height=13, width=50)
     scroll = ttk.Scrollbar(lsg)
     text.configure(yscrollcommand=scroll.set)
     text.pack(side=tk.LEFT)
@@ -163,6 +180,9 @@ ttk.Button(frm, text="Drück mi", command=lambda: showinfo(
     title='HaHa',
     message='Hast du während deiner Klausur nichts besseres zu tun?')).grid(column=0, row=5)
 ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=5)
+ttk.Label(frm, text="").grid(column=0, row=6)
+fontStyle = tkFont.Font(family="Lucida Grande", size=7)
+ttk.Label(frm, text="engineered by J. Böcker, L. Butscher, T. Stöhr, W. Prinz", font=fontStyle).grid(column=0, row=7)
 e.bind('<Return>', callback)
 i.bind('<Return>', quantile)
 root.bind('<Escape>', close)
