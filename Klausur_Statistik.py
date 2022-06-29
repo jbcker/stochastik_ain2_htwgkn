@@ -96,9 +96,9 @@ def quantile(event=None):
                 message='Quantile < 0 oder > 100 können nicht berechnet werden!')
         else:
             print(quantilvalue, "% Quantil = ",
-                np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
-            qnt_txt = qnt_txt + "\n" + str(quantilvalue) + "% Quantil = " + str(
-            np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
+                  np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
+            qnt_txt = qnt_txt + "\n" + str(quantilvalue) + "% Quantil = " + \
+                      str(np.quantile(data, quantilvalue / 100, method="averaged_inverted_cdf"))
 
     qnt = tk.Tk()
     qnt.geometry("500x100")
